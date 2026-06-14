@@ -1,3 +1,13 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Temporary Files
+*.tmp
+
+# Export Configuration (Including Local Path)
+export_presets.cfg
+
+# OS System File
+.DS_Store
+Thumbs.db
