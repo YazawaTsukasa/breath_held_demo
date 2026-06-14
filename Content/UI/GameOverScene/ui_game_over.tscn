@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://by82m6vq8emsx"]
 
 [ext_resource type="Texture2D" uid="uid://bqte5i1m8hxym" path="res://Assets/Pictures/UI/test_project_game_over.png" id="1_0deom"]
+[ext_resource type="Script" uid="uid://whrmi77winu3" path="res://Source/GDScript/UI/GameOverScene/ui_game_over.gd" id="1_qv1lf"]
 
 [node name="UiGameOver" type="Control" unique_id=2012992570]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qv1lf")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=239614678]
 layout_mode = 1

@@ -40,3 +40,9 @@ func start_game():
 
 func quit_game():
 	get_tree().quit()
+
+func back_to_main_menu():
+	var main_scene_ref = ProjectSettings.get_setting(
+		"application/run/main_scene"
+	)
+	_change_scene(main_scene_ref)

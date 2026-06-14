@@ -99,44 +99,49 @@ func dash():
 		return
 	super()
 
+func use_pivot_item(using_type:String):
+	if not item_pivot:
+		return
+	print("Main Character Using Item By ItemPivot")
+	item_pivot.use_item(using_type)
 
-# NOTE: Temporary Player Input
-func _input(event):
-	if Input.is_key_pressed(KEY_SHIFT):
-		set_running_state(true)
-	else:
-		set_running_state(false)
-	
-	var attack_type=""
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_SPACE:
-			dash()
-		if event.pressed and event.keycode == KEY_C:
-			speed_manager.switch_to_decel()
-		if not event.pressed and event.keycode == KEY_C:
-			speed_manager.switch_to_normal()
-		if event.pressed and event.keycode == KEY_V:
-			speed_manager.switch_to_accel()
-		if not event.pressed and event.keycode == KEY_V:
-			speed_manager.switch_to_normal()
-		if not event.pressed and event.keycode == KEY_R:
-			attack_type="reload"
-	
-	# Weapon Attack
-	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			#print("MOUSE_BUTTON_LEFT pressed")
-			attack_type="normal_using"
-		elif event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
-			#print("MOUSE_BUTTON_RIGHT pressed")
-			attack_type="special_using"
-		elif event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
-			#print("MOUSE_BUTTON_MIDDLE pressed")
-			_start_throw_gauge()
-		elif not event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
-			#print("MOUSE_BUTTON_MIDDLE released")
-			_end_throw_gauge()
-	
-	if item_pivot and attack_type!="":
-		print("Main Character Using Item By ItemPivot")
-		item_pivot.use_item(attack_type)
+## NOTE: Temporary Player Input
+#func _input(event):
+	#if Input.is_key_pressed(KEY_SHIFT):
+		#set_running_state(true)
+	#else:
+		#set_running_state(false)
+	#
+	#var attack_type=""
+	#if event is InputEventKey:
+		#if event.pressed and event.keycode == KEY_SPACE:
+			#dash()
+		#if event.pressed and event.keycode == KEY_C:
+			#speed_manager.switch_to_decel()
+		#if not event.pressed and event.keycode == KEY_C:
+			#speed_manager.switch_to_normal()
+		#if event.pressed and event.keycode == KEY_V:
+			#speed_manager.switch_to_accel()
+		#if not event.pressed and event.keycode == KEY_V:
+			#speed_manager.switch_to_normal()
+		#if not event.pressed and event.keycode == KEY_R:
+			#attack_type="reload"
+	#
+	## Weapon Attack
+	#if event is InputEventMouseButton:
+		#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			##print("MOUSE_BUTTON_LEFT pressed")
+			#attack_type="normal_using"
+		#elif event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+			##print("MOUSE_BUTTON_RIGHT pressed")
+			#attack_type="special_using"
+		#elif event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
+			##print("MOUSE_BUTTON_MIDDLE pressed")
+			#_start_throw_gauge()
+		#elif not event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
+			##print("MOUSE_BUTTON_MIDDLE released")
+			#_end_throw_gauge()
+	#
+	#if item_pivot and attack_type!="":
+		#print("Main Character Using Item By ItemPivot")
+		#item_pivot.use_item(attack_type)
