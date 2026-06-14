@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://0krapvikngi0"]
+
+[ext_resource type="Script" uid="uid://bupnkuxtd0sie" path="res://Source/GDScript/Actors/Items/Weapons/Long-range Weapons/long_range_weapon_base.gd" id="1_j660h"]
+[ext_resource type="Texture2D" uid="uid://svdqxdt1sdrt" path="res://Assets/Pictures/Actors/Items/Weapons/Long-range Weapons/Weapon_Bow.png" id="2_w6ge5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6ge5"]
+size = Vector2(38, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtdor"]
+size = Vector2(37, 8)
+
+[node name="WeaponBow" type="RigidBody2D" unique_id=1649663043 node_paths=PackedStringArray("projectile_pivot", "projectile_value_label", "reload_progress_bar", "area", "collision_shape")]
+script = ExtResource("1_j660h")
+projectile_pivot = NodePath("ProjectilePivot")
+projectile_value_label = NodePath("Label")
+reload_progress_bar = NodePath("ProgressBar")
+area = NodePath("Area2D")
+collision_shape = NodePath("CollisionShape2D")
+metadata/_custom_type_script = "uid://bupnkuxtd0sie"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1153095640]
+position = Vector2(0, 6)
+texture = ExtResource("2_w6ge5")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=891591458]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1051957376]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_w6ge5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1323654843]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_jtdor")
+
+[node name="ProjectilePivot" type="Node2D" parent="." unique_id=193590505]
+
+[node name="Label" type="Label" parent="." unique_id=1600080672]
+offset_left = 22.0
+offset_top = 10.0
+offset_right = 38.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 11
+text = "111"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1291921293]
+offset_left = -24.0
+offset_top = 25.0
+offset_right = 2.9816895
+offset_bottom = 29.0
+rotation = -1.5707964
+show_percentage = false

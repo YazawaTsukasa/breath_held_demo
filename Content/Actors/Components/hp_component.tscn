@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://i8djms3fmu3e"]
+
+[ext_resource type="Script" uid="uid://ckxy4v61atjmj" path="res://Source/GDScript/Actors/Components/hp_component.gd" id="1_1a2rc"]
+[ext_resource type="StyleBox" uid="uid://c4kuwaxe1i868" path="res://Assets/StyleBoxFlat/sbf_hp_bar.tres" id="2_2rrmb"]
+
+[node name="HpComponent" type="Node2D" unique_id=856860146]
+script = ExtResource("1_1a2rc")
+
+[node name="HPBar" type="ProgressBar" parent="." unique_id=294123371]
+unique_name_in_owner = true
+offset_left = -43.0
+offset_top = -35.0
+offset_right = 43.0
+offset_bottom = -29.0
+theme_override_styles/fill = ExtResource("2_2rrmb")
+show_percentage = false

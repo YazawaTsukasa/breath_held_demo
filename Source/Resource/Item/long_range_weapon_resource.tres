@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="LongRangeWeaponDatatable" format=3 uid="uid://c3y7rcf78oxrw"]
+
+[ext_resource type="Script" uid="uid://cu6sf0pg41nif" path="res://Source/Resource/Item/long_range_weapon_data.gd" id="1_2t84c"]
+[ext_resource type="Script" uid="uid://f3liesv1efwn" path="res://Source/Resource/Item/long_range_weapon_datatable.gd" id="2_k3xj6"]
+[ext_resource type="Texture2D" uid="uid://svdqxdt1sdrt" path="res://Assets/Pictures/Actors/Items/Weapons/Long-range Weapons/Weapon_Bow.png" id="3_nyda5"]
+
+[sub_resource type="Resource" id="Resource_k3xj6"]
+script = ExtResource("1_2t84c")
+projectile_id = "arrow"
+attack_power = 3
+item_name = "Bow"
+special_effect = "normal_damage"
+tscn_reference = "res://Content/Actors/Items/Weapons/Long-range Weapons/weapon_bow.tscn"
+icon = ExtResource("3_nyda5")
+metadata/_custom_type_script = "uid://cu6sf0pg41nif"
+
+[resource]
+script = ExtResource("2_k3xj6")
+data_dict = Dictionary[String, ExtResource("1_2t84c")]({
+"bow": SubResource("Resource_k3xj6")
+})
+metadata/_custom_type_script = "uid://dx70on1p5sgc5"

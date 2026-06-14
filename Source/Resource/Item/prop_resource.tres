@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="PropDatatable" format=3 uid="uid://dpkfrrtdob5rq"]
+
+[ext_resource type="Texture2D" uid="uid://dpmreyxts31sq" path="res://Assets/Pictures/Actors/Items/Props/Prop_band_aid.png" id="2_2r5i3"]
+[ext_resource type="Script" uid="uid://cp2f3amfdc13l" path="res://Source/Resource/Item/prop_data.gd" id="2_oya3b"]
+[ext_resource type="Script" uid="uid://xissgyy7k5d8" path="res://Source/Resource/Item/prop_datatable.gd" id="2_v3e2g"]
+
+[sub_resource type="Resource" id="Resource_2r5i3"]
+script = ExtResource("2_oya3b")
+item_name = "Band-aid"
+normal_effect = "normal_healing"
+tscn_reference = "res://Content/Actors/Items/Props/band_aid.tscn"
+property_value = 10.0
+icon = ExtResource("2_2r5i3")
+metadata/_custom_type_script = "uid://cp2f3amfdc13l"
+
+[resource]
+script = ExtResource("2_v3e2g")
+data_dict = Dictionary[String, ExtResource("2_oya3b")]({
+"band_aid": SubResource("Resource_2r5i3")
+})
+metadata/_custom_type_script = "uid://dx70on1p5sgc5"

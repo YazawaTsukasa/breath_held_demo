@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dfc5fxxqpgfcu"]
+
+[ext_resource type="Script" uid="uid://c7m7ddxn0l80c" path="res://Source/GDScript/UI/Common/ui_item.gd" id="1_f1u0a"]
+
+[node name="UiItem" type="TextureRect" unique_id=1629771211]
+script = ExtResource("1_f1u0a")

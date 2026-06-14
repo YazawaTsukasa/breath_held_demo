@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MeleeWeaponDatatable" format=3 uid="uid://c0yc8am8700sp"]
+
+[ext_resource type="Texture2D" uid="uid://c7q6kiunrmip6" path="res://Assets/Pictures/Actors/Items/Weapons/Melee Weapons/Weapon_Sword.png" id="2_46okd"]
+[ext_resource type="Script" uid="uid://b4e56x6atry6b" path="res://Source/Resource/Item/melee_weapon_datatable.gd" id="2_ovs42"]
+[ext_resource type="Script" uid="uid://dvyqrwwvh7kjq" path="res://Source/Resource/Item/melee_weapon_data.gd" id="2_ro3hv"]
+
+[sub_resource type="Resource" id="Resource_46okd"]
+script = ExtResource("2_ro3hv")
+item_name = "Hands"
+normal_effect = "normal_damage"
+tscn_reference = "res://Content/Actors/Items/Weapons/Melee Weapons/hands.tscn"
+metadata/_custom_type_script = "uid://dvyqrwwvh7kjq"
+
+[sub_resource type="Resource" id="Resource_ovs42"]
+script = ExtResource("2_ro3hv")
+thrust_time = 0.08
+attack_power = 5
+item_name = "Sword"
+normal_effect = "normal_damage"
+special_effect = "normal_damage"
+tscn_reference = "res://Content/Actors/Items/Weapons/Melee Weapons/weapon_sword.tscn"
+icon = ExtResource("2_46okd")
+metadata/_custom_type_script = "uid://dvyqrwwvh7kjq"
+
+[resource]
+script = ExtResource("2_ovs42")
+data_dict = Dictionary[String, ExtResource("2_ro3hv")]({
+"hands": SubResource("Resource_46okd"),
+"sword": SubResource("Resource_ovs42")
+})
+metadata/_custom_type_script = "uid://dx70on1p5sgc5"

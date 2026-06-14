@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://igtf8ttwuav6"]
+
+[ext_resource type="Script" uid="uid://cxd28tt4yhgdd" path="res://Source/GDScript/Actors/Items/Weapons/Melee Weapons/hands.gd" id="1_euy0e"]
+[ext_resource type="Texture2D" uid="uid://lmh2wp1bwtx3" path="res://Assets/Pictures/Actors/Items/Weapons/Melee Weapons/Hand_Right.png" id="2_dflfg"]
+[ext_resource type="Texture2D" uid="uid://b1qgu05nkrhum" path="res://Assets/Pictures/Actors/Items/Weapons/Melee Weapons/Hand_Left.png" id="3_nf0a1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dflfg"]
+radius = 6.0
+
+[node name="Hands" type="RigidBody2D" unique_id=1764127240 node_paths=PackedStringArray("right_hand", "left_hand", "right_area", "left_area")]
+script = ExtResource("1_euy0e")
+right_hand = NodePath("Right")
+left_hand = NodePath("Left")
+right_area = NodePath("Right/RightArea2D")
+left_area = NodePath("Left/LeftArea2D")
+metadata/_custom_type_script = "uid://cxd28tt4yhgdd"
+
+[node name="Right" type="Sprite2D" parent="." unique_id=279461094]
+unique_name_in_owner = true
+position = Vector2(3, 0)
+texture = ExtResource("2_dflfg")
+
+[node name="RightArea2D" type="Area2D" parent="Right" unique_id=2106663541]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/RightArea2D" unique_id=1856234278]
+position = Vector2(-12, 8)
+shape = SubResource("CircleShape2D_dflfg")
+
+[node name="Left" type="Sprite2D" parent="." unique_id=98890777]
+unique_name_in_owner = true
+position = Vector2(-3, 0)
+texture = ExtResource("3_nf0a1")
+
+[node name="LeftArea2D" type="Area2D" parent="Left" unique_id=1294901998]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/LeftArea2D" unique_id=2031865176]
+position = Vector2(12, 8)
+shape = SubResource("CircleShape2D_dflfg")

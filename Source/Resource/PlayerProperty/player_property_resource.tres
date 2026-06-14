@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="PlayerPropertyDatatable" format=3 uid="uid://cnlcw4f1p2bc8"]
+
+[ext_resource type="Script" uid="uid://hgvy2km7pile" path="res://Source/Resource/PlayerProperty/player_property_data.gd" id="1_qtv4x"]
+[ext_resource type="Script" uid="uid://8yg4rm2yv1us" path="res://Source/Resource/PlayerProperty/player_property_datatable.gd" id="2_0mq4t"]
+
+[sub_resource type="Resource" id="Resource_qtv4x"]
+script = ExtResource("1_qtv4x")
+property_name = "HP"
+init_value = 40
+metadata/_custom_type_script = "uid://hgvy2km7pile"
+
+[sub_resource type="Resource" id="Resource_0mq4t"]
+script = ExtResource("1_qtv4x")
+property_name = "SP"
+init_value = 100
+metadata/_custom_type_script = "uid://hgvy2km7pile"
+
+[resource]
+script = ExtResource("2_0mq4t")
+player_property_dict = Dictionary[String, ExtResource("1_qtv4x")]({
+"hp": SubResource("Resource_qtv4x"),
+"sp": SubResource("Resource_0mq4t")
+})
+metadata/_custom_type_script = "uid://8yg4rm2yv1us"

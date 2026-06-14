@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bbq1uawtiu2of"]
+
+[ext_resource type="Script" uid="uid://d013q7ic76m4a" path="res://Source/GDScript/Actors/Items/Weapons/Melee Weapons/melee_weapon_base.gd" id="1_bk7yv"]
+[ext_resource type="Texture2D" uid="uid://c7q6kiunrmip6" path="res://Assets/Pictures/Actors/Items/Weapons/Melee Weapons/Weapon_Sword.png" id="2_an34a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5nh15"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nh15"]
+size = Vector2(8, 21)
+
+[node name="WeaponSword" type="RigidBody2D" unique_id=25236339 node_paths=PackedStringArray("area", "collision_shape")]
+collision_layer = 4
+collision_mask = 4
+mass = 2.0
+gravity_scale = 0.0
+script = ExtResource("1_bk7yv")
+area = NodePath("Area2D")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1665557501]
+position = Vector2(0, 16)
+shape = SubResource("CapsuleShape2D_5nh15")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1102915023]
+position = Vector2(0, 16)
+texture = ExtResource("2_an34a")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=917526209]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=702257570]
+position = Vector2(0, 21.5)
+shape = SubResource("RectangleShape2D_5nh15")

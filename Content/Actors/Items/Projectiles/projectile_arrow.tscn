@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bp7vcdvahievn"]
+
+[ext_resource type="Script" uid="uid://d013q7ic76m4a" path="res://Source/GDScript/Actors/Items/Weapons/Melee Weapons/melee_weapon_base.gd" id="1_xqc6o"]
+[ext_resource type="Texture2D" uid="uid://catlnamgp1i4a" path="res://Assets/Pictures/Actors/Items/Weapons/Long-range Weapons/Projectile_Arrow.png" id="2_d42h1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0u1p4"]
+radius = 2.236068
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u1p4"]
+size = Vector2(2, 22)
+
+[node name="ProjectileArrow" type="RigidBody2D" unique_id=865863588 node_paths=PackedStringArray("area", "collision_shape")]
+collision_layer = 4
+collision_mask = 32
+gravity_scale = 0.0
+script = ExtResource("1_xqc6o")
+area = NodePath("Area2D")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1607760282]
+position = Vector2(0, 6)
+texture = ExtResource("2_d42h1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=999734184]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1349257514]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_0u1p4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2028526264]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_0u1p4")

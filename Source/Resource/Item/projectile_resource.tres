@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemDatatable" format=3 uid="uid://dslmvmbpibp8"]
+
+[ext_resource type="Script" uid="uid://chl15452fng88" path="res://Source/Resource/Item/item_data.gd" id="1_aa2b5"]
+[ext_resource type="Texture2D" uid="uid://catlnamgp1i4a" path="res://Assets/Pictures/Actors/Items/Weapons/Long-range Weapons/Projectile_Arrow.png" id="2_gqlx2"]
+[ext_resource type="Script" uid="uid://dx70on1p5sgc5" path="res://Source/Resource/Item/item_datatable.gd" id="2_px24w"]
+
+[sub_resource type="Resource" id="Resource_7sfk6"]
+script = ExtResource("1_aa2b5")
+item_name = "Arrow"
+normal_effect = "normal_damage"
+special_effect = "normal_damage"
+tscn_reference = "res://Content/Actors/Items/Projectiles/projectile_arrow.tscn"
+icon = ExtResource("2_gqlx2")
+mass = 0.8
+throw_angular_velocity = 0.0
+throw_attack_power = 2
+metadata/_custom_type_script = "uid://chl15452fng88"
+
+[resource]
+script = ExtResource("2_px24w")
+data_dict = Dictionary[String, ExtResource("1_aa2b5")]({
+"arrow": SubResource("Resource_7sfk6")
+})
+metadata/_custom_type_script = "uid://dx70on1p5sgc5"

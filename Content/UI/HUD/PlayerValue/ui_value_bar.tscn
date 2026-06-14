@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://citogh32x5i6u"]
+
+[ext_resource type="Script" uid="uid://c84y7vhpbjavb" path="res://Source/GDScript/UI/HUD/PlayerValue/ui_value_bar.gd" id="1_weaw3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_weaw3"]
+
+[node name="UiValueBar" type="HBoxContainer" unique_id=1926089692]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_weaw3")
+
+[node name="Control" type="Control" parent="." unique_id=1169982451]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="ValueName" type="Label" parent="Control" unique_id=174583505]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 22.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "HP"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=911341906]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueBar" type="ProgressBar" parent="PanelContainer" unique_id=1571913595]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_weaw3")
+show_percentage = false
+
+[node name="ValueText" type="Label" parent="PanelContainer" unique_id=1921700320]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"

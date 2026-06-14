@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cuco3m5dj7q3q"]
+
+[ext_resource type="Script" uid="uid://njvgbppnpu31" path="res://Source/GDScript/Actors/Components/item_pivot_component.gd" id="1_lke12"]
+
+[node name="ItemPivotComponent" type="Node2D" unique_id=1176260483 node_paths=PackedStringArray("progress_bar")]
+script = ExtResource("1_lke12")
+progress_bar = NodePath("")
+metadata/_custom_type_script = "uid://njvgbppnpu31"

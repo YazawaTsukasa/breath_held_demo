@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cnaoo6djvbmgg"]
+
+[ext_resource type="Texture2D" uid="uid://dumxwtvpq7mjo" path="res://Assets/Pictures/UI/UI_Item_Selection.png" id="1_fibg6"]
+
+[node name="UiItemSelection" type="TextureRect" unique_id=1471326191]
+texture = ExtResource("1_fibg6")

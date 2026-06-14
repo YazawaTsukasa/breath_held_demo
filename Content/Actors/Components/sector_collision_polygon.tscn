@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b6sbbhebxqxh2"]
+
+[ext_resource type="Script" uid="uid://bsa0w1fl3bpwf" path="res://Source/GDScript/Actors/Components/sector_collision_polygon.gd" id="1_ggerr"]
+
+[node name="SectorCollisionPolygon" type="CollisionPolygon2D" unique_id=350012477]
+polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)
+script = ExtResource("1_ggerr")
+metadata/_custom_type_script = "uid://bsa0w1fl3bpwf"

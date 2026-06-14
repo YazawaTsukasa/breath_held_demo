@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://b5j1x4ac4knh6"]
+
+[ext_resource type="Texture2D" uid="uid://d0fnnnxootmby" path="res://Assets/Pictures/UI/test_project_main.png" id="1_2iyc5"]
+[ext_resource type="Script" uid="uid://da1h8o60mvbi5" path="res://Source/GDScript/UI/MainMenu/ui_main_menu.gd" id="1_y2ugg"]
+
+[node name="UiMainMenu" type="Control" unique_id=1632935080 node_paths=PackedStringArray("start_button", "quit_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y2ugg")
+start_button = NodePath("Control/VBoxContainer/Button")
+quit_button = NodePath("Control/VBoxContainer/Button2")
+test_map_scent_ref = "res://Content/Worlds/test_world.tscn"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=165630628]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2iyc5")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="." unique_id=1161811212]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2008429085]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1660082920]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer" unique_id=1200862683]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "START
+"
+
+[node name="Button2" type="Button" parent="Control/VBoxContainer" unique_id=673108380]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "QUIT"
