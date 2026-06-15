@@ -13,6 +13,16 @@ func set_player_character(new_main_character:MainCharacter):
 		print("set_player_character successed")
 		_player_character.set_team(Team.Type.PLAYER)
 		_player_character.ready.connect(_set_player_zero_item)
+		
+		_player_character.on_ready=_init_player_data
+
+func _init_player_data():
+	if not _player_character:
+		return
+	var data_asset=\
+		resource_manager.get_data_asset_resource("player_data")
+	if data_asset:
+		_player_character.init_data(data_asset)
 
 func check_is_player_character(character:MainCharacter):
 	if not character:print("not character")

@@ -2,16 +2,12 @@ extends CharacterBase
 class_name MainCharacter
 
 @export var run_sp_consume_per_cycle:int=1
-@export var run_sp_consume_cycle:float=0.03:
-	set(cycle):# 最小値制限
-		run_sp_consume_cycle=max(_min_run_sp_consume_cycle,cycle)
+@export var run_sp_consume_cycle:float=0.03
 		
 @export var dush_sp_consume:int=50
 
 @export var sp_replies_per_cycle:int=1
-@export var sp_replies_cycle:float=0.03:
-	set(cycle):# 最小値制限
-		sp_replies_cycle = max(_min_sp_replies_cycle, cycle)
+@export var sp_replies_cycle:float=0.03
 
 var _min_run_sp_consume_cycle:float=0.01
 var _min_sp_replies_cycle:float=0.01
@@ -50,6 +46,26 @@ func _physics_process(delta: float) -> void:
 	
 	# SP回復
 	_sp_replies(delta)
+
+func init_data(data_asset:CharacterDataAsset):
+	super(data_asset)
+	var player_data_asset=\
+		data_asset as PlayerDataAsset
+	if not player_data_asset:
+		return
+	print("player init_data")
+	run_sp_consume_per_cycle=\
+		player_data_asset.run_sp_consume_per_cycle
+	run_sp_consume_cycle=\
+		max(_min_run_sp_consume_cycle,\
+			player_data_asset.run_sp_consume_cycle)
+		
+	dush_sp_consume=player_data_asset.dush_sp_consume
+
+	sp_replies_per_cycle=player_data_asset.sp_replies_per_cycle
+	sp_replies_cycle=\
+		max(_min_sp_replies_cycle,\
+			player_data_asset.sp_replies_cycle)
 
 # SP相関
 var _sp_replies_elapsed_time:float=0.0
@@ -104,44 +120,3 @@ func use_pivot_item(using_type:String):
 		return
 	print("Main Character Using Item By ItemPivot")
 	item_pivot.use_item(using_type)
-
-## NOTE: Temporary Player Input
-#func _input(event):
-	#if Input.is_key_pressed(KEY_SHIFT):
-		#set_running_state(true)
-	#else:
-		#set_running_state(false)
-	#
-	#var attack_type=""
-	#if event is InputEventKey:
-		#if event.pressed and event.keycode == KEY_SPACE:
-			#dash()
-		#if event.pressed and event.keycode == KEY_C:
-			#speed_manager.switch_to_decel()
-		#if not event.pressed and event.keycode == KEY_C:
-			#speed_manager.switch_to_normal()
-		#if event.pressed and event.keycode == KEY_V:
-			#speed_manager.switch_to_accel()
-		#if not event.pressed and event.keycode == KEY_V:
-			#speed_manager.switch_to_normal()
-		#if not event.pressed and event.keycode == KEY_R:
-			#attack_type="reload"
-	#
-	## Weapon Attack
-	#if event is InputEventMouseButton:
-		#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			##print("MOUSE_BUTTON_LEFT pressed")
-			#attack_type="normal_using"
-		#elif event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
-			##print("MOUSE_BUTTON_RIGHT pressed")
-			#attack_type="special_using"
-		#elif event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
-			##print("MOUSE_BUTTON_MIDDLE pressed")
-			#_start_throw_gauge()
-		#elif not event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
-			##print("MOUSE_BUTTON_MIDDLE released")
-			#_end_throw_gauge()
-	#
-	#if item_pivot and attack_type!="":
-		#print("Main Character Using Item By ItemPivot")
-		#item_pivot.use_item(attack_type)

@@ -16,6 +16,7 @@ Created as a portfolio piece to demonstrate engine-agnostic system design and im
 | Development | Solo (design, implementation, and debugging handled independently) |
 | Period | 2026 – present (ongoing) |
 
+A complete game loop is implemented: Main Menu → Start Game → Test Scene (system demo) → Player death → Game Over screen → Any key to return to Main Menu → Replay or Quit.
 ---
 
 ## Screenshots

@@ -21,6 +21,16 @@ class_name CharacterBase
 
 @export var item_angle_range:float=360.0
 
+#var _max_speed:float=300.0
+#var _min_end_speed:float=1.0
+#var _acceleration:float=600.0
+#var _deceleration:float=2000.0
+#var _run_max_speed:float=500.0
+#var _run_acceleration:float=1000.0
+#var _turn_coefficient:float=2.0
+#var _dash_speed:float=800.0
+#var _dash_time:float=0.01
+
 # Character Movement And Move Animation
 var _is_running:bool=false
 enum move_state{
@@ -49,8 +59,14 @@ var _dash_timer:float=dash_time
 # Team
 var _team:Team.Type=Team.Type.NEUTRAL
 
+var on_ready:Callable
+
 # Subnode Initialization Complete
 func _ready() -> void:
+	if on_ready.is_valid():
+		on_ready.call()
+		on_ready=Callable()
+	
 	# Direction Initialization
 	#_play_move_animation_by_current()
 	_init_direction_vector(init_direction_vector)
@@ -66,6 +82,18 @@ func _physics_process(_delta: float) -> void:
 	#if self is not MainCharacter:
 		#pass
 		#_process_input(Vector2.ZERO,delta)
+
+func init_data(data_asset:CharacterDataAsset):
+	print("character init_data")
+	max_speed=data_asset.max_speed
+	min_end_speed=data_asset.min_end_speed
+	acceleration=data_asset.acceleration
+	deceleration=data_asset.deceleration
+	run_max_speed=data_asset.run_max_speed
+	run_acceleration=data_asset.run_acceleration
+	turn_coefficient=data_asset.turn_coefficient
+	dash_speed=data_asset.dash_speed
+	dash_time=data_asset.dash_time
 
 func set_team(team:Team.Type):
 	_team=team
