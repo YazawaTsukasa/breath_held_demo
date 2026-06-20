@@ -220,10 +220,16 @@ func use(using_type:String):
 	if using_method!=null and has_method(using_method):
 		call(using_method)
 
-func init_property_by_data(item_id:String,item_data:ItemData):
+var _item_instance_data:ItemInstanceData=null
+func init_property_by_data(item_instance_data:ItemInstanceData):
+	if not item_instance_data:
+		return
+	_item_instance_data=item_instance_data
+	_item_id=item_instance_data.get_item_id()
+	var item_data=item_instance_data.get_origin_data()
 	if not item_data:
 		return
-	_item_id=item_id
+	
 	_item_name=item_data.item_name
 	_normal_effect=item_data.normal_effect
 	_special_effect=item_data.special_effect
@@ -232,6 +238,9 @@ func init_property_by_data(item_id:String,item_data:ItemData):
 	_throw_angular_velocity=item_data.throw_angular_velocity
 	_throw_attack_effect=item_data.throw_attack_effect
 	_throw_attack_power=item_data.throw_attack_power
+
+func get_item_instance_data():
+	return _item_instance_data
 
 func get_item_id():
 	return _item_id

@@ -30,8 +30,9 @@ func _process(_delta: float) -> void:
 func _on_detection_body_entered(body:PhysicsBody2D):
 	#print("_on_detection_body_entered")
 	var character=body as CharacterBase
-	if character.get_team() in target_team:
-		_targets.append(body)
+	if character:
+		if character.get_team() in target_team:
+			_targets.append(body)
 	
 func _on_detection_body_exited(body:PhysicsBody2D):
 	#print("_on_detection_body_exited")

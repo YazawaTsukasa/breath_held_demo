@@ -102,12 +102,13 @@ func get_team():
 
 func _on_area_entered(target_area):
 	#print("Character On Area Entered")
-	var target = target_area.get_parent()
-	if target is ItemBase and target.can_pickup():
+	var target = target_area.get_parent() as ItemBase
+	if target and target.can_pickup():
 		var parent = target.get_parent()
 		if parent:
 			parent.remove_child(target)
-		player_data_manager.add_item(target)
+		player_data_manager.add_item(
+			target.get_item_instance_data())
 
 func _set_move_state(state:String):
 	_pre_move_state=_current_move_state

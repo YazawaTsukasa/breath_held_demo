@@ -29,4 +29,5 @@ func _on_scene_start():
 	_init_ui(ui_ui_player_value_ref)
 
 func _on_game_over():
+	#pass
 	_init_ui(ui_game_over_ref)

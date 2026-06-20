@@ -35,9 +35,11 @@ func set_team(team:Team.Type):
 func _init_default_weapon():
 	if not default_weapon_id:
 		return
-	_default_weapon=ItemFactory.create_long_range_weapon(default_weapon_id)
-	if not _default_weapon:
-		_default_weapon=ItemFactory.create_melee_weapon(default_weapon_id)
+	var dict=ItemFactory.create_long_range_weapon(default_weapon_id)
+	#_default_weapon=dict.get("item")
+	if not dict:
+		dict=ItemFactory.create_melee_weapon(default_weapon_id)
+		_default_weapon=dict.get("item")
 
 func effect_to_self(effect:EffectData):
 	if effect_component:
@@ -81,17 +83,15 @@ func throw_out_item(force:Vector2):
 	_item.throw_out(ori_holder,force)
 	
 	# プレイヤーキャラの場合、プレイヤーデータからアイテムを削除
-	#if _is_parent_player():
 	if ComponentTool.is_parent_player(get_parent()):
 		player_data_manager.remove_item_by_instance(_item)
-	else:
-		#_item=null
-		set_item(null)
+	#else:
+	set_item(null)
 
 func use_item(using_type:String):
 	if not _item:
 		return
-	#print("use_item")
+	print("use_item")
 	_item.use(using_type)
 
 # 道具が使われた際に、効果をEffectComponentに処理させて、道具を削除

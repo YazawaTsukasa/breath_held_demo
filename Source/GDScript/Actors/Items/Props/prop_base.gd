@@ -30,8 +30,9 @@ func _normal_using():
 	_be_used(effect)
 	_on_using_end()
 
-func init_property_by_data(item_id:String,item_data:ItemData):
-	super(item_id,item_data)
+func init_property_by_data(item_instance_data:ItemInstanceData):
+	super(item_instance_data)
+	var item_data=item_instance_data.get_origin_data()
 	var prop_data=item_data as PropData
 	if not prop_data:
 		return

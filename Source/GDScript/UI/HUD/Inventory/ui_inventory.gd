@@ -83,18 +83,23 @@ func _init_item_by_data(item_dict:Dictionary):
 	for index in item_dict.keys():
 		if index>=col_num:
 			break
-		var item=item_dict.get(index)
+		var item:ItemInstanceData=item_dict.get(index)
+		print("index: ",index)
+		if item:
+			print("item valid")
+		else:
+			print("item invalid")
 		var ui_item_instance=_create_new_ui_item(
-			item.get_icon())
+			item.get_origin_data().icon)
 		item_pivot_list[index].add_child(ui_item_instance)
 	select_item_by_index(_current_selected_item_index)
 
-func _on_item_update(index:int,item:ItemBase):	
+func _on_item_update(index:int,item:ItemInstanceData):	
 	if index<0 or index>=col_num:
 		return
 	if item!=null:
 		var ui_item_instance=_create_new_ui_item(
-			item.get_icon())
+			item.get_origin_data().icon)
 		item_pivot_list[index].add_child(ui_item_instance)
 	else:
 		_remove_ui_item(index)

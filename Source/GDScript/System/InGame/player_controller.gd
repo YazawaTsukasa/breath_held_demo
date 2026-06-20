@@ -32,8 +32,17 @@ func check_is_player_character(character:MainCharacter):
 	return character==_player_character
 
 func set_player_item_by_index(index:int):
-	var item:ItemBase=player_data_manager.get_item_by_index(index)
-	_set_player_item(item)
+	if player_data_manager:
+		var item_instance_data:ItemInstanceData=\
+			player_data_manager.get_item_by_index(index)
+		if not item_instance_data:
+			return
+		var item_dict=ItemFactory.create_item_by_instance_data(
+			item_instance_data.get_item_type(),
+			item_instance_data)
+		if not item_dict:
+			return
+		_set_player_item(item_dict.get("item"))
 
 func _set_player_zero_item():
 	set_player_item_by_index(0)

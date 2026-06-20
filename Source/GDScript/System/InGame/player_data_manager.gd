@@ -2,7 +2,8 @@ extends Node
 class_name PlayerDataManager
 
 # アイテム更新時の信号
-signal player_item_update(index:int,item:ItemBase)
+#signal player_item_update(index:int,item:ItemBase)
+signal player_item_update(index:int,item:ItemInstanceData)
 signal on_player_game_over
 
 # 自動的にロードするプロパティ名
@@ -10,38 +11,52 @@ var _properties_names:Array[String]=[
 	"hp","sp",
 ]
 var _properties:Dictionary={}
-var _item_dict:Dictionary[int,ItemBase]={}
+
+#var _item_dict:Dictionary[int,ItemBase]={}
+var _item_dict:Dictionary[int,ItemInstanceData]={}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	game_manager.on_game_start.connect(_on_game_start)
+	
+func _on_game_start():
 	print("Player Data Initialize")
 	_init_properties()
 	#_connect_hp_on_min_signal()
 	
+	_item_dict.clear()
 	# Temporary
 	_test_init_item_list()
 
 # Items-----------------------------------------------------------
 # NOTE: テスト用のアイテムリストの初期化
 func _test_init_item_list():
-	var sword=ItemFactory.create_melee_weapon("sword")
+	#var sword=ItemFactory.create_melee_weapon("sword")
+	var sword=ItemFactory.get_melee_weapon_data("sword")
 	add_item(sword)
-	var band_aid=ItemFactory.create_prop("band_aid")
+	#var band_aid=ItemFactory.create_prop("band_aid")
+	var band_aid=ItemFactory.get_prop_data("band_aid")
 	add_item(band_aid)
-	var bow=ItemFactory.create_long_range_weapon("bow")
+	#var bow=ItemFactory.create_long_range_weapon("bow")
+	var bow=ItemFactory.get_long_range_weapon_data("bow")
 	add_item(bow)
-	var arrow_1=ItemFactory.create_projectile("arrow")
+	#var arrow_1=ItemFactory.create_projectile("arrow")
+	var arrow_1=ItemFactory.get_projectile_data("arrow")
 	add_item(arrow_1)
-	var arrow_2=ItemFactory.create_projectile("arrow")
+	#var arrow_2=ItemFactory.create_projectile("arrow")
+	var arrow_2=ItemFactory.get_projectile_data("arrow")
 	add_item(arrow_2)
-	var arrow_3=ItemFactory.create_projectile("arrow")
+	#var arrow_3=ItemFactory.create_projectile("arrow")
+	var arrow_3=ItemFactory.get_projectile_data("arrow")
 	add_item(arrow_3)
 
-func add_item_list(items:Array[ItemBase]):
+#func add_item_list(items:Array[ItemBase]):
+func add_item_list(items:Array[ItemInstanceData]):
 	for item in items:
 		add_item(item)
 	
-func add_item(new_item:ItemBase):
+#func add_item(new_item:ItemBase):
+func add_item(new_item:ItemInstanceData):
 	if not new_item:
 		return
 	# 元の親から解放
@@ -66,9 +81,11 @@ func remove_item_by_index(index:int):
 	player_item_update.emit(index,null)
 	
 func remove_item_by_instance(item:ItemBase):
+	if not is_instance_valid(item):
+		return
 	var has_removed_index:int=-1
 	for key in _item_dict.keys():
-		if _item_dict[key]==item:
+		if _item_dict[key]==item.get_item_instance_data():
 			_item_dict.erase(key)
 			has_removed_index=key
 	if has_removed_index!=-1:
@@ -105,11 +122,6 @@ func pop_first_item_by_id(item_id:String):
  
 # Properties-----------------------------------------------------------
 func _init_properties():
-	for key in _properties.keys():
-		var _property:PlayerPropertyData=_properties[key]
-		_properties.erase(key)
-		if is_instance_valid(_property):
-			_property.free()
 	_properties.clear()
 	
 	for property_name in _properties_names:

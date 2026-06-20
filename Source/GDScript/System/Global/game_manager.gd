@@ -5,7 +5,7 @@ var test_map_scent_ref:String=\
 	"res://Content/Worlds/test_world.tscn"
 
 signal on_scene_start
-#signal on_game_start
+signal on_game_start
 #signal on_game_over
 
 var _current_game_scene:Node
@@ -28,6 +28,7 @@ func _change_scene(path: String):
 
 func start_game():
 	await _change_scene(test_map_scent_ref)
+	on_game_start.emit()
 
 func quit_game():
 	get_tree().quit()
