@@ -14,6 +14,10 @@ func enter():
 	super()
 	_melee_attack()
 
+func exit():
+	super()
+	_end_melee_attack()
+
 func _melee_attack():
 	if not _ai_controller:
 		return
@@ -24,5 +28,4 @@ func _end_melee_attack():
 	if not _ai_controller:
 		return
 	_ai_controller.end_melee_attack()
-	_ai_controller.switch_state("chase")
 	

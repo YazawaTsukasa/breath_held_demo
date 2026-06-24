@@ -4,7 +4,7 @@ class_name AIController
 @export var item_pivot:ItemPivotComponent
 @export var sensor:SensorComponent
 @export var movement:MovementComponent
-@export var hp:HPComponent
+@export var hp_component:HPComponent
 
 @export var initial_state:String="idle"
 
@@ -33,6 +33,7 @@ func _ready() -> void:
 	_init_owner()
 	_init_sensor()
 	_init_item_pivot()
+	_init_hp_component()
 
 func _init_owner():
 	var _owner=ComponentTool.get_parent_character(self)
@@ -63,10 +64,10 @@ func _init_item_pivot():
 	#item_pivot.on_item_using_start.connect()
 	item_pivot.on_item_using_end.connect(_start_cooldown)
 
-func _init_hp():
-	if not hp:
+func _init_hp_component():
+	if not hp_component:
 		return
-	hp.hp_become_zero.connect(_on_hp_zero)
+	hp_component.hp_become_zero.connect(_on_hp_zero)
 
 func _init_sensor():
 	if not sensor:
@@ -149,4 +150,5 @@ func end_melee_attack():
 	_melee_attacking = false
 
 func _on_hp_zero():
+	print("AI _on_hp_zero")
 	switch_state("dead")

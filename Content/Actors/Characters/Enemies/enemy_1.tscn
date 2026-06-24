@@ -269,10 +269,11 @@ shape = SubResource("CapsuleShape2D_bwk6v")
 [node name="CollisionShape2D" parent="HurtboxComponent" parent_id_path=PackedInt32Array(1168978630) index="0" unique_id=1980670333]
 shape = SubResource("RectangleShape2D_mfyk4")
 
-[node name="AiController" parent="." index="9" unique_id=1880995872 node_paths=PackedStringArray("item_pivot", "sensor", "movement") instance=ExtResource("4_rbket")]
+[node name="AiController" parent="." index="9" unique_id=1880995872 node_paths=PackedStringArray("item_pivot", "sensor", "movement", "hp_component") instance=ExtResource("4_rbket")]
 item_pivot = NodePath("../ItemPivotComponent")
 sensor = NodePath("../SensorComponent")
 movement = NodePath("../MovementComponent")
+hp_component = NodePath("../HpComponent")
 
 [node name="SensorComponent" parent="." index="10" unique_id=1205050606 instance=ExtResource("5_3dvhw")]
 
