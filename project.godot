@@ -19,9 +19,9 @@ config/icon="res://icon.svg"
 
 resource_manager="*uid://c40hvj22ojeo"
 game_manager="*uid://bwkca55gi30jd"
-ui_manager="*uid://ct27ilghrqyp8"
 player_data_manager="*uid://bgfboarpmf8li"
 player_controller="*uid://olr1v8yavml3"
+ui_manager="*uid://ct27ilghrqyp8"
 speed_manager="*uid://bpqyme5u8exrp"
 
 [dotnet]

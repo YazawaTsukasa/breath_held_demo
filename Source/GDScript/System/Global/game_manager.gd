@@ -1,20 +1,20 @@
 extends Node
 class_name GameManager
 
-var test_map_scent_ref:String=\
+var test_map_scent_ref: String = \
 	"res://Content/Worlds/test_world.tscn"
 
 signal on_scene_start
 signal on_game_start
 #signal on_game_over
 
-var _current_game_scene:Node
+var _current_game_scene: WorldBase
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-func notify_game_scene_ready(scene):
+func notify_game_scene_ready(scene:WorldBase):
 	_current_game_scene = scene
 	on_scene_start.emit()
 

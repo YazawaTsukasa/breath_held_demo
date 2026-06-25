@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://bkegm33mb4ct"]
 
-[ext_resource type="Script" uid="uid://bt2csgpnx6trc" path="res://Source/GDScript/Worlds/world_base.gd" id="1_f8xet"]
 [ext_resource type="PackedScene" uid="uid://b5j1x4ac4knh6" path="res://Content/UI/MainMenu/ui_main_menu.tscn" id="1_qxnvi"]
 
 [node name="WorldMainMenu" type="Node2D" unique_id=1527772296]
-script = ExtResource("1_f8xet")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1171448645]
 

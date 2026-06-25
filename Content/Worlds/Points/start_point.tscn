@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ccwmqc5o7idvc"]
+
+[ext_resource type="Script" uid="uid://bieauc5ko2dgo" path="res://Source/GDScript/Worlds/start_point.gd" id="1_0n8ni"]
+
+[node name="StartPoint" type="Node2D" unique_id=575635233]
+script = ExtResource("1_0n8ni")
+metadata/_custom_type_script = "uid://bieauc5ko2dgo"

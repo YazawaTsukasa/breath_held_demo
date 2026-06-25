@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://bg7ghuy8tcq55"]
 
-[ext_resource type="PackedScene" uid="uid://m6482rmjhslo" path="res://Content/Worlds/Map/test_tile_map.tscn" id="1_10fjp"]
+[ext_resource type="PackedScene" uid="uid://m6482rmjhslo" path="res://Content/Worlds/Maps/test_tile_map.tscn" id="1_10fjp"]
 [ext_resource type="Script" uid="uid://bt2csgpnx6trc" path="res://Source/GDScript/Worlds/world_base.gd" id="1_v08iw"]
-[ext_resource type="PackedScene" uid="uid://dutppnh4eyjhv" path="res://Content/Actors/Characters/main_character.tscn" id="5_qe0yh"]
+[ext_resource type="PackedScene" uid="uid://ccwmqc5o7idvc" path="res://Content/Worlds/Points/start_point.tscn" id="5_mpo1e"]
 [ext_resource type="PackedScene" uid="uid://b8e8iv5po6mnw" path="res://Content/Actors/Characters/Enemies/enemy_1.tscn" id="6_ckm38"]
 
-[node name="Node2D" type="Node2D" unique_id=1200162375]
+[node name="Node2D" type="Node2D" unique_id=1200162375 node_paths=PackedStringArray("start_point")]
 script = ExtResource("1_v08iw")
+start_point = NodePath("StartPoint")
 
 [node name="TestTileMap" parent="." unique_id=934871506 instance=ExtResource("1_10fjp")]
 
@@ -16,11 +17,11 @@ script = ExtResource("1_v08iw")
 position = Vector2(172, -129)
 max_speed = 150.0
 
-[node name="Player" parent="." unique_id=1577346033 instance=ExtResource("5_qe0yh")]
-position = Vector2(-227, 112)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=227131457]
-
 [node name="Enemy02" parent="." unique_id=374906178 instance=ExtResource("6_ckm38")]
 position = Vector2(-299, -136)
 max_speed = 150.0
+
+[node name="StartPoint" parent="." unique_id=575635233 instance=ExtResource("5_mpo1e")]
+position = Vector2(-60, 120)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=13751522]

@@ -28,12 +28,13 @@ func _ready() -> void:
 	print("item_list length: ",len(item_dict))
 	_init_item_by_data(item_dict)
 	
+	_init_gc_item_selection()
+	
 	player_data_manager.player_item_update.connect(_on_item_update)
 	
 func init_grid_containers():
 	_init_gc_item_frame()
 	_init_gc_item_pivot()
-	_init_gc_item_selection()
 
 func _init_gc_item_frame():
 	if not gc_item_frame:
@@ -59,6 +60,7 @@ func _init_gc_item_selection():
 		gc_item_selection.add_child(item_selection_instance)
 		selection_list.append(item_selection_instance)
 		frame_size=item_selection_instance.size
+	print("_init_gc_item_selection _set_player_item")
 	select_item_by_index(_current_selected_item_index)
 
 func _init_gc_item_pivot():
@@ -92,7 +94,8 @@ func _init_item_by_data(item_dict:Dictionary):
 		var ui_item_instance=_create_new_ui_item(
 			item.get_origin_data().icon)
 		item_pivot_list[index].add_child(ui_item_instance)
-	select_item_by_index(_current_selected_item_index)
+	# print("_init_item_by_data _set_player_item")
+	# select_item_by_index(_current_selected_item_index)
 
 func _on_item_update(index:int,item:ItemInstanceData):	
 	if index<0 or index>=col_num:
@@ -104,6 +107,7 @@ func _on_item_update(index:int,item:ItemInstanceData):
 	else:
 		_remove_ui_item(index)
 	if index==_current_selected_item_index:
+		print("_on_item_update _set_player_item")
 		select_item_by_index(_current_selected_item_index)
 
 func _create_new_ui_item(texture:Texture2D):
@@ -133,6 +137,7 @@ func select_item_by_index(index:int):
 			continue
 		selection_list[i].self_modulate.a = 0
 	selection_list[index].self_modulate.a = 1
+	print("UI _set_player_item")
 	player_controller.set_player_item_by_index(index)
 
 # NOTE: Temporary Input

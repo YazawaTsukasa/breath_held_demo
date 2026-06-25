@@ -14,9 +14,9 @@ var _min_sp_replies_cycle:float=0.01
 
 var _is_tired:bool=false
 
-func _init() -> void:
-	# プレイヤーキャラの登録
-	player_controller.set_player_character(self)
+# func _init() -> void:
+# 	# プレイヤーキャラの登録
+# 	player_controller.set_player_character(self)
 
 func _ready() -> void:
 	super()
