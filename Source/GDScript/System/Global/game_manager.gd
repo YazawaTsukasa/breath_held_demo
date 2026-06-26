@@ -14,7 +14,7 @@ var _current_game_scene: WorldBase
 func _ready() -> void:
 	pass # Replace with function body.
 
-func notify_game_scene_ready(scene:WorldBase):
+func notify_game_scene_ready(scene: WorldBase):
 	_current_game_scene = scene
 	on_scene_start.emit()
 

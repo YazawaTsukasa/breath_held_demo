@@ -2,7 +2,7 @@ extends CharacterBase
 class_name EnemyBase
 
 func _init() -> void:
-	_team=Team.Type.ENEMY
+	_team = Team.Type.ENEMY
 	
 func _ready() -> void:
 	super()
@@ -13,5 +13,5 @@ func _physics_process(delta: float) -> void:
 
 # NOTE: 
 func _test_tack_weapon():
-	var sword_dict=ItemFactory.create_melee_weapon("sword")
+	var sword_dict = ItemFactory.create_melee_weapon("sword")
 	set_item(sword_dict.get("item"))

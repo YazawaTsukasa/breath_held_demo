@@ -1,8 +1,9 @@
 extends Node
 class_name PlayerController
 
-var _test_main_character_ref:String="res://Content/Actors/Characters/main_character.tscn"
+var _test_main_character_ref: String = "res://Content/Actors/Characters/main_character.tscn"
 var _player_character: MainCharacter = null
+var _camera:Camera2D=null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,16 +20,16 @@ func _set_player_character(scene: WorldBase):
 	if not is_instance_valid(scene):
 		print("on_game_start not scene")
 		return
-	var char_scene=load(_test_main_character_ref)
+	var char_scene = load(_test_main_character_ref)
 	if not char_scene:
 		print("on_game_start not char_scene")
 		return
-	_player_character=char_scene.instantiate()
+	_player_character = char_scene.instantiate()
 	if not _player_character:
 		print("on_game_start not _player_character")
 		return
 	_player_character.set_team(Team.Type.PLAYER)
-	_player_character.on_ready = _init_player_data
+	_player_character.on_ready = _init_player
 	scene.set_character_to_start_position(_player_character)
 	
 # func set_player_character(new_main_character: MainCharacter):
@@ -39,6 +40,21 @@ func _set_player_character(scene: WorldBase):
 # 		_player_character.ready.connect(_set_player_zero_item)
 		
 # 		_player_character.on_ready = _init_player_data
+
+func _init_player():
+	_init_player_data()
+	var result=_set_camera_to_player()
+	print("_set_camera_to_player : ",result)
+
+func _set_camera_to_player():
+	if not is_instance_valid(_player_character):
+		return false
+	if not is_instance_valid(_camera):
+		_camera=Camera2D.new()
+		_player_character.add_child(_camera)
+	else:
+		_camera.reparent(_player_character)
+	return true
 
 func _init_player_data():
 	if not _player_character:

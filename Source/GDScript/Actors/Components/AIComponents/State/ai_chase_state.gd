@@ -1,9 +1,9 @@
 extends AIStateBase
 class_name AIChaseState
 
-func _init(ai_controller:AIController) -> void:
+func _init(ai_controller: AIController) -> void:
 	super(ai_controller)
-	_name="AIChaseState"
+	_name = "AIChaseState"
 	if _ai_controller:
 		_ai_controller.on_target_lost.connect(_on_target_lost)
 

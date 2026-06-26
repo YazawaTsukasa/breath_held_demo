@@ -1,27 +1,27 @@
 extends Node
 class_name AIController
 
-@export var item_pivot:ItemPivotComponent
-@export var sensor:SensorComponent
-@export var movement:MovementComponent
-@export var hp_component:HPComponent
+@export var item_pivot: ItemPivotComponent
+@export var sensor: SensorComponent
+@export var movement: MovementComponent
+@export var hp_component: HPComponent
 
-@export var initial_state:String="idle"
+@export var initial_state: String = "idle"
 
-@export var melee_attack_cooldown:float=1.0
+@export var melee_attack_cooldown: float = 1.0
 
-var state_ragistry:Dictionary={
+var state_ragistry: Dictionary = {
 	#"default":AIIdleState,
-	"idle":AIIdleState,
-	"chase":AIChaseState,
-	"attack":AIAttackState,
-	"stunned":AIStunnedState,
-	"dead":AIDeadState,
+	"idle": AIIdleState,
+	"chase": AIChaseState,
+	"attack": AIAttackState,
+	"stunned": AIStunnedState,
+	"dead": AIDeadState,
 }
-var _default_state=AIIdleState
+var _default_state = AIIdleState
 
-var _current_state:AIStateBase
-var _targets:Array[Node2D]=[]
+var _current_state: AIStateBase
+var _targets: Array[Node2D] = []
 
 signal on_target_sensored
 signal on_target_lost
@@ -36,22 +36,22 @@ func _ready() -> void:
 	_init_hp_component()
 
 func _init_owner():
-	var _owner=ComponentTool.get_parent_character(self)
+	var _owner = ComponentTool.get_parent_character(self)
 	if _owner:
-		_owner.on_direction_vector_changed=_on_direction_vector_changed
+		_owner.on_direction_vector_changed = _on_direction_vector_changed
 
-func _on_direction_vector_changed(direction:Vector2):
+func _on_direction_vector_changed(direction: Vector2):
 	if sensor:
 		sensor.rotate_areas(direction)
 	if item_pivot:
 		item_pivot.change_rotation_by_direction(direction)
 
-func switch_state(state_name:String=""):
+func switch_state(state_name: String = ""):
 	if _current_state:
 		_current_state.exit()
-	_current_state=\
+	_current_state = \
 		state_ragistry.get(
-			state_name,_default_state).new(self)
+			state_name, _default_state).new(self)
 	if _current_state:
 		_current_state.enter()
 
@@ -72,15 +72,15 @@ func _init_hp_component():
 func _init_sensor():
 	if not sensor:
 		return
-	sensor.on_target_sensored=_on_target_sensored
-	sensor.on_target_lost=_on_target_lost
-	sensor.on_melee_body_entered=_on_melee_body_entered
-	sensor.on_melee_body_exited=_on_melee_body_exited
+	sensor.on_target_sensored = _on_target_sensored
+	sensor.on_target_lost = _on_target_lost
+	sensor.on_melee_body_entered = _on_melee_body_entered
+	sensor.on_melee_body_exited = _on_melee_body_exited
 
 func _on_target_sensored(body):
 	if not is_instance_valid(body):
 		return
-	var character=body as CharacterBase
+	var character = body as CharacterBase
 	if character:
 		if body not in _targets:
 			_targets.append(body)
@@ -105,9 +105,9 @@ func _on_melee_body_exited(_body):
 		_current_state.handle_action("end_melee_attack")
 
 func start_moving_to_first_targer():
-	if _targets.size()==0:
+	if _targets.size() == 0:
 		return false
-	var first_targer=_targets[0]
+	var first_targer = _targets[0]
 	if movement and is_instance_valid(first_targer):
 		#print("has first target")
 		movement.move_toward(first_targer)
@@ -118,13 +118,13 @@ func stop_moving():
 	if movement:
 		movement.stop_moving()
 
-var timer:SceneTreeTimer
-var _melee_attacking:bool= false
+var timer: SceneTreeTimer
+var _melee_attacking: bool = false
 func start_melee_attack():
 	if _melee_attacking:
 		return
 	_melee_attacking = true
-	if timer!=null and timer.time_left>0:
+	if timer != null and timer.time_left > 0:
 		await timer.timeout
 	if not _melee_attacking:
 		return

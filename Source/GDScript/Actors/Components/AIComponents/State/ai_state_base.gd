@@ -1,16 +1,16 @@
 extends RefCounted
 class_name AIStateBase
 
-var _name:String="AIStateBase"
+var _name: String = "AIStateBase"
 
-var _ai_controller:AIController
+var _ai_controller: AIController
 
-var _handle_registry:Dictionary={
-	"start_melee_attack":"_start_melee_attack"
+var _handle_registry: Dictionary = {
+	"start_melee_attack": "_start_melee_attack"
 }
 
-func _init(ai_controller:AIController) -> void:
-	_ai_controller=ai_controller
+func _init(ai_controller: AIController) -> void:
+	_ai_controller = ai_controller
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,12 +20,12 @@ func get_name():
 	return _name
 
 func enter():
-	print("AI State: ",_name," On Enter")
+	print("AI State: ", _name, " On Enter")
 func exit():
-	print("AI State: ",_name," On Exit")
+	print("AI State: ", _name, " On Exit")
 
-func handle_action(action:String):
-	var handler=_handle_registry.get(action)
+func handle_action(action: String):
+	var handler = _handle_registry.get(action)
 	if not handler or not has_method(handler):
 		return
 	var callable = Callable(self, handler)

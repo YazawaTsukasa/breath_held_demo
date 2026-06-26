@@ -23,5 +23,3 @@ max_speed = 150.0
 
 [node name="StartPoint" parent="." unique_id=575635233 instance=ExtResource("5_mpo1e")]
 position = Vector2(-60, 120)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=13751522]

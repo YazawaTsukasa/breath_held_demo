@@ -1,9 +1,9 @@
 extends AIStateBase
 class_name AIIdleState
 
-func _init(ai_controller:AIController) -> void:
+func _init(ai_controller: AIController) -> void:
 	super(ai_controller)
-	_name="AIIdleState"
+	_name = "AIIdleState"
 	if _ai_controller:
 		_ai_controller.on_target_sensored.connect(_on_target_sensored)
 
