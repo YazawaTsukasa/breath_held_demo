@@ -5,6 +5,7 @@ func _init(ai_controller: AIController) -> void:
 	super(ai_controller)
 	_name = "AIAttackState"
 	_handle_registry["end_melee_attack"] = "_end_melee_attack"
+	_handle_registry["melee_attack"]="_melee_attack"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,16 +13,20 @@ func _ready() -> void:
 
 func enter():
 	super()
-	_melee_attack()
+	_start_melee_attack()
 
 func exit():
 	super()
-	_end_melee_attack()
+
+func _start_melee_attack():
+	if not _ai_controller:
+		return
+	_ai_controller.start_melee_attack()
 
 func _melee_attack():
 	if not _ai_controller:
 		return
-	_ai_controller.start_melee_attack()
+	_ai_controller.melee_attack()
 
 func _end_melee_attack():
 	print("_end_melee_attack")

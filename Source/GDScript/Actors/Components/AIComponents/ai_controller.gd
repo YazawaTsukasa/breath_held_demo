@@ -23,9 +23,6 @@ var _default_state = AIIdleState
 var _current_state: AIStateBase
 var _targets: Array[Node2D] = []
 
-signal on_target_sensored
-signal on_target_lost
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,7 +58,6 @@ func _switch_to_initial_state():
 func _init_item_pivot():
 	if not item_pivot:
 		return
-	#item_pivot.on_item_using_start.connect()
 	item_pivot.on_item_using_end.connect(_start_cooldown)
 
 func _init_hp_component():
@@ -81,26 +77,32 @@ func _on_target_sensored(body):
 	if not is_instance_valid(body):
 		return
 	var character = body as CharacterBase
-	if character:
-		if body not in _targets:
-			_targets.append(body)
-		on_target_sensored.emit(body)
+	if not character:
+		return
+	if body in _targets:
+		return
+	print("AI _on_target_sensored")
+	_targets.append(body)
+	print("_targets size: ", _targets.size())
+	if _current_state:
+		_current_state.handle_action("start_chase")
 
 func _on_target_lost(body):
-	#print("AI _on_target_lost")
+	print("AI _on_target_lost")
 	if not is_instance_valid(body):
 		return
 	_targets.erase(body)
-	#print("_targets size: ",_targets.size())
-	on_target_lost.emit(body)
+	print("_targets size: ", _targets.size())
+	if _current_state:
+		_current_state.handle_action("start_idle")
 
 func _on_melee_body_entered(_body):
-	#print("AI on_melee_body_entered")
+	print("AI on_melee_body_entered")
 	if _current_state:
 		_current_state.handle_action("start_melee_attack")
 	
 func _on_melee_body_exited(_body):
-	#print("AI on_melee_body_exited")
+	print("AI on_melee_body_exited")
 	if _current_state:
 		_current_state.handle_action("end_melee_attack")
 
@@ -118,6 +120,7 @@ func stop_moving():
 	if movement:
 		movement.stop_moving()
 
+# NOTE: Attack Control------------------------------------
 var timer: SceneTreeTimer
 var _melee_attacking: bool = false
 func start_melee_attack():
@@ -128,13 +131,10 @@ func start_melee_attack():
 		await timer.timeout
 	if not _melee_attacking:
 		return
-	_melee_attack()
-	#while _melee_attacking:
-		#_melee_attack()
-		#timer = get_tree().create_timer(melee_attack_cooldown)
-		#await timer.timeout
+	if _current_state:
+		_current_state.handle_action("melee_attack")
 
-func _melee_attack():
+func melee_attack():
 	if _melee_attacking:
 		if not item_pivot:
 			return
@@ -144,11 +144,16 @@ func _start_cooldown():
 	print("_start_cooldown")
 	timer = get_tree().create_timer(melee_attack_cooldown)
 	await timer.timeout
-	_melee_attack()
+	if _current_state:
+		_current_state.handle_action("melee_attack")
 	
 func end_melee_attack():
 	_melee_attacking = false
+	switch_state("chase")
+#----------------------------------------------------------
 
 func _on_hp_zero():
 	print("AI _on_hp_zero")
+	if _current_state:
+		_current_state.handle_action("end_melee_attack")
 	switch_state("dead")

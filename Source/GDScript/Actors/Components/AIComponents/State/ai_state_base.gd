@@ -5,9 +5,7 @@ var _name: String = "AIStateBase"
 
 var _ai_controller: AIController
 
-var _handle_registry: Dictionary = {
-	"start_melee_attack": "_start_melee_attack"
-}
+var _handle_registry: Dictionary = {}
 
 func _init(ai_controller: AIController) -> void:
 	_ai_controller = ai_controller
@@ -27,12 +25,13 @@ func exit():
 func handle_action(action: String):
 	var handler = _handle_registry.get(action)
 	if not handler or not has_method(handler):
+		print("AI No Handle: ", action)
 		return
 	var callable = Callable(self, handler)
+	print("AI Handle: ", action)
 	callable.call()
 
 func _start_melee_attack():
-	#print("_start_melee_attack")
 	if not _ai_controller:
 		return
 	_ai_controller.switch_state("attack")
